@@ -1,0 +1,15 @@
+<h1><%= @student.name %></h1>
+
+<p>
+   <strong>CPF: </strong> $<%= @student.cpf %><br />
+   <strong>Cellphone: </strong> $<%= @student.cellphone %><br />
+   <strong>Birth Date: </strong> $<%= @student.birth_date %><br />
+   <strong>Gender: </strong> <%= link_to @student.gender.name,
+								:action => "show_genders", :id => @student.gender.id %><br />
+   <strong>Payment Method: </strong> <%= link_to @student.payment_method.name,
+								:action => "show_payment_methods", :id => @student.payment_method.id %><br />
+</p>
+
+<hr />
+
+<%= link_to 'Back', {:action => 'list'} %>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_011340) do
+ActiveRecord::Schema.define(version: 2018_09_15_172928) do
+
+  create_table "genders", force: :cascade do |t|
+    t.string "name", limit: 50
+  end
 
   create_table "institutions", force: :cascade do |t|
     t.string "name", limit: 50
@@ -23,13 +27,19 @@ ActiveRecord::Schema.define(version: 2018_09_15_011340) do
   end
 
   create_table "matriculations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.string "name", limit: 50
   end
 
   create_table "students", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", limit: 50
+    t.string "cpf", limit: 50
+    t.integer "gender_id"
+    t.integer "payment_method_id"
+    t.date "birth_date"
+    t.integer "cellphone"
   end
 
 end

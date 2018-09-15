@@ -1,0 +1,14 @@
+<h1>Edit Student Details</h1>
+
+<%= form_for @student, :url =>{:action => "update", :id =>@student} do |f| %>
+
+<p>Name: <%= f.text_field 'name' %></p>
+<p>CPF: <%= f.text_field  'cpf' %></p>
+<p>Cellphone: <%= f.text_field  'cellphone' %></p>
+<p>Birth Date: <%= f.text_field  'birth_date' %></p>
+<p>Gender: <%= f.collection_select :gender_id, Gender.all, :id, :name %></p>
+<p>Payment Method: <%= f.collection_select :payment_method_id, PaymentMethod.all, :id, :name %></p>
+<%= f.submit "Save changes" %>
+<% end %>
+
+<%= link_to 'Back', {:action => 'list' } %>

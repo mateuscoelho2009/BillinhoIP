@@ -1,0 +1,30 @@
+<ul id = "genders">
+   <% Gender.all.each do |c| %>
+   <li><%= link_to c.name, :action => "show_genders", :id => c.id %></li>
+   <% end %>
+</ul>
+
+<ul id = "payment_methods">
+   <% PaymentMethod.all.each do |c| %>
+   <li><%= link_to c.name, :action => "show_payment_methods", :id => c.id %></li>
+   <% end %>
+</ul>
+
+<% if @students.blank? %>
+<p>There are not any students currently in the system.</p>
+<% else %>
+<p>These are the current students in our system</p>
+
+<ul id = "students">
+   <% @students.each do |c| %>
+    <li>
+	   <%= link_to c.name, {:action => "show", :id => c.id} -%>
+	   <b> <%= link_to 'Edit', {:action => "edit", :id => c.id} %></b>
+	   <b> <%= link_to "Delete", {:action => 'delete', :id => c.id},
+      			:confirm => "Are you sure you want to delete this item?" %></b>
+	</li>
+   <% end %>
+</ul>
+
+<% end %>
+<p><%= link_to "Add new Student", {:action => 'new' }%></p>

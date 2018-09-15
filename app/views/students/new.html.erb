@@ -1,0 +1,25 @@
+<h1>Add new Student</h1>
+
+<%= form_tag :action => 'create' do %>
+<p><label for = "student_name">Name</label>:
+
+<%= text_field 'students', 'name' %></p>
+<p><label for = "student_cpf">CPF</label>:
+
+<%= text_field 'students', 'cpf' %></p>
+<p><label for = "student_cellphone">Cellphone</label>:
+
+<%= text_field 'students', 'cellphone' %></p>
+<p><label for = "student_birth_date">Birth Date</label>:
+
+<%= text_field 'students', 'birth_date' %></p>
+<p><label for = "student_gender_id">Gender</label>:
+
+<%= collection_select(:students, :gender_id, @genders, :id, :name, prompt: true) %></p>
+<p><label for = "student_payment_method_id">Payment Method</label>:
+
+<%= collection_select(:students, :payment_method_id, @payment_methods, :id, :name, prompt: true) %></p>
+<%= submit_tag "Create" %>
+
+<% end -%>
+<%= link_to 'Back', {:action => 'list'} %>

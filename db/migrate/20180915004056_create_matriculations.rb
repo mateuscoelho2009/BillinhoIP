@@ -1,8 +1,11 @@
 class CreateMatriculations < ActiveRecord::Migration[5.2]
-  def change
-    create_table :matriculations do |t|
+   def self.up
+      create_table :matriculations do |t|
+         
+      end
+   end
 
-      t.timestamps
-    end
-  end
+   def self.down
+      drop_table :matriculations
+   end
 end

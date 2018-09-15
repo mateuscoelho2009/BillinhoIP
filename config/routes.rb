@@ -10,5 +10,17 @@ Rails.application.routes.draw do
    get 'institutions/update'
    get 'institutions/show_kinds'
 
+   get 'students/list'
+   get 'students/new'
+   post 'students/create'
+   patch 'students/update'
+   get 'students/list'
+   get 'students/show'
+   get 'students/edit'
+   get 'students/delete'
+   get 'students/update'
+   get 'students/show_genders'
+   get 'students/show_payment_methods'
+
   root 'application#hello'
 end
