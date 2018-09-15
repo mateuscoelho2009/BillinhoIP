@@ -1,2 +1,16 @@
-<h1>Institutions#new</h1>
-<p>Find me in app/views/institutions/new.html.erb</p>
+<h1>Add new book</h1>
+
+<%= form_tag :action => 'create' do %>
+<p><label for = "institution_name">Name</label>:
+
+<%= text_field 'institutions', 'name' %></p>
+<p><label for = "institution_cnpj">CNPJ</label>:
+
+<%= text_field 'institutions', 'cnpj' %></p>
+<p><label for = "institution_kind_id">Kind</label>:
+
+<%= collection_select(:institutions, :kind_id, @kinds, :id, :name, prompt: true) %></p>
+<%= submit_tag "Create" %>
+
+<% end -%>
+<%= link_to 'Back', {:action => 'list'} %>

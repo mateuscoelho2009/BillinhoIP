@@ -1,2 +1,11 @@
-<h1>Institutions#show</h1>
-<p>Find me in app/views/institutions/show.html.erb</p>
+<h1><%= @institution.name %></h1>
+
+<p>
+   <strong>CNPJ: </strong> $<%= @institution.cnpj %><br />
+   <strong>kind: </strong> <%= link_to @institution.kind.name,
+								:action => "show_kinds", :id => @institution.kind.id %><br />
+</p>
+
+<hr />
+
+<%= link_to 'Back', {:action => 'list'} %>

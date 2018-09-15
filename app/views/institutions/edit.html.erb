@@ -1,0 +1,11 @@
+<h1>Edit Institution Details</h1>
+
+<%= form_for @institution, :url =>{:action => "update", :id =>@institution} do |f| %>
+
+<p>Name: <%= f.text_field 'name' %></p>
+<p>CNPJ: <%= f.text_field  'cnpj' %></p>
+<p>Kind: <%= f.collection_select :kind_id, Kind.all, :id, :name %></p>
+<%= f.submit "Save changes" %>
+<% end %>
+
+<%= link_to 'Back', {:action => 'list' } %>

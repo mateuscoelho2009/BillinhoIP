@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_004056) do
+ActiveRecord::Schema.define(version: 2018_09_15_011340) do
 
   create_table "institutions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "name", limit: 50
+    t.string "cnpj", limit: 50
+    t.integer "kind_id"
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string "name", limit: 50
   end
 
   create_table "matriculations", force: :cascade do |t|
