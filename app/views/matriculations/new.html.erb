@@ -9,13 +9,13 @@
 <%= collection_select(:matriculations, :institution_id, @institutions, :id, :name, prompt: true) %></p>
 <p><label for = "matriculation_due_date">Due Date</label>:
 
-<%= text_field 'matriculation', 'due_date' %></p>
+<%= text_field 'matriculations', 'due_date' %></p>
 <p><label for = "matriculation_num_invoices">Number of Invoices</label>:
 
-<%= text_field 'matriculation', 'num_invoices' %></p>
+<%= text_field 'matriculations', 'num_invoices' %></p>
 <p><label for = "matriculation_total_value">Total Value</label>:
 
-<%= text_field 'matriculation', 'total_value' %></p>
+<%= text_field 'matriculations', 'total_value' %></p>
 <%= submit_tag "Create" %>
 
 <% end -%>
