@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+root 'institutions#begpag'
+
    get 'institutions/list'
    get 'institutions/new'
    post 'institutions/create'
@@ -9,6 +11,10 @@ Rails.application.routes.draw do
    get 'institutions/delete'
    get 'institutions/update'
    get 'institutions/show_kinds'
+   get 'institutions/begpag'
+get 'institutions/show_institutions'
+get 'institutions/show_matriculations'
+get 'institutions/show_students'
 
    get 'students/list'
    get 'students/new'
@@ -31,6 +37,4 @@ Rails.application.routes.draw do
    get 'matriculations/edit'
    get 'matriculations/delete'
    get 'matriculations/update'
-
-  root 'application#hello'
 end
