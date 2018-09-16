@@ -1,4 +1,6 @@
 class MatriculationsController < ApplicationController
+	layout 'standard'
+	
 	def list
 		@matriculations = Matriculation.all
 	end

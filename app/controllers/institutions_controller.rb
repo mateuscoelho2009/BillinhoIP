@@ -1,4 +1,6 @@
 class InstitutionsController < ApplicationController
+	layout 'standard'
+	
 	def begpag
 
 	end

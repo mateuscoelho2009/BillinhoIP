@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+	layout 'standard'
+	
 	def list
 		@students = Student.all
 	end
