@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2018_09_15_172928) do
   end
 
   create_table "matriculations", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "institution_id"
+    t.integer "due_date"
+    t.integer "num_invoices"
+    t.float "total_value"
   end
 
   create_table "payment_methods", force: :cascade do |t|

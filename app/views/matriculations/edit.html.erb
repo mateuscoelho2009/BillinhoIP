@@ -1,0 +1,13 @@
+<h1>Edit Matriculation Details</h1>
+
+<%= form_for @matriculation, :url =>{:action => "update", :id =>@matriculation} do |f| %>
+
+<p>Student: <%= f.collection_select :student_id, Student.all, :id, :name %></p>
+<p>Institution: <%= f.collection_select :institution_id, Institution.all, :id, :name %></p>
+<p>Due Date: <%= f.text_field 'due_date' %></p>
+<p>Number od Invoices: <%= f.text_field  'num_invoices' %></p>
+<p>Total Value: <%= f.text_field  'total_value' %></p>
+<%= f.submit "Save changes" %>
+<% end %>
+
+<%= link_to 'Back', {:action => 'list' } %>

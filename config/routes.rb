@@ -22,5 +22,15 @@ Rails.application.routes.draw do
    get 'students/show_genders'
    get 'students/show_payment_methods'
 
+   get 'matriculations/list'
+   get 'matriculations/new'
+   post 'matriculations/create'
+   patch 'matriculations/update'
+   get 'matriculations/list'
+   get 'matriculations/show'
+   get 'matriculations/edit'
+   get 'matriculations/delete'
+   get 'matriculations/update'
+
   root 'application#hello'
 end

@@ -1,0 +1,22 @@
+<h1>Add new Matriculation</h1>
+
+<%= form_tag :action => 'create' do %>
+<p><label for = "matriculation_student_id">Student</label>:
+
+<%= collection_select(:matriculations, :student_id, @students, :id, :name, prompt: true) %></p>
+<p><label for = "matriculation_institution_id">Institution</label>:
+
+<%= collection_select(:matriculations, :institution_id, @institutions, :id, :name, prompt: true) %></p>
+<p><label for = "matriculation_due_date">Due Date</label>:
+
+<%= text_field 'matriculation', 'due_date' %></p>
+<p><label for = "matriculation_num_invoices">Number of Invoices</label>:
+
+<%= text_field 'matriculation', 'num_invoices' %></p>
+<p><label for = "matriculation_total_value">Total Value</label>:
+
+<%= text_field 'matriculation', 'total_value' %></p>
+<%= submit_tag "Create" %>
+
+<% end -%>
+<%= link_to 'Back', {:action => 'list'} %>
