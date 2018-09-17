@@ -47,7 +47,7 @@ class MatriculationsController < ApplicationController
 	end
 	   
 	def delete
-		Matriculation.find(params[:id])
+		@matriculation = Matriculation.find(params[:id])
    		if @matriculation.destroy
 			flash[:success] = "Matriculation was deleted."
 	    else
