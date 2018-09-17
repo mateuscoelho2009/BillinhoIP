@@ -1,59 +1,45 @@
 class InstitutionsController < ApplicationController
 	layout 'standard'
-	
+
 	def begpag
 
 	end
 
 	def list
 		@institutions = Institution.all
-		#respond_with(@institutions)
+		respond_with(@institutions)
 	end
 	   
 	def show
 		@institution = Institution.find(params[:id])
-		#respond_with(@institution)
+		respond_with(@institution)
    	end
 	   
 	def new
 		@institution = Institution.new
 		@kinds = Kind.all
-		#respond_with(@institution)
+		respond_with(@institution)
 	end
 	   
 	def create
-	   @institution = Institution.new(institution_params)
-		
-	   if @institution.save
-	      #respond_with(@institution, :location => @institution)
-	      redirect_to :action => 'list'
-	   else
-	      @kinds = Kind.all
-	      render :action => 'new'
-	   end
-	   
+	   @institution = Institution.create(institution_params)
+	   respond_with(@institution, :location => '/institutions/list')
 	end
 
 	def institution_params
-	   	params.require(:institutions).permit(:name, :cnpj, :kind_id)
+		params.require(:institutions).permit(:name, :cnpj, :kind_id)
 	end
 
 	def edit
 		@institution = Institution.find(params[:id])
 		@kinds = Kind.all
-		#respond_with(@institution)
+		respond_with(@institution)
 	end
 	   
 	def update
 		@institution = Institution.find(params[:id])
-	
-	    if @institution.update_attributes(institution_param)
-		#respond_with(@institution, :location => @institution)
-	      	redirect_to :action => 'show', :id => @institution
-	   	else
-		@kinds = Kind.all
-	      	render :action => 'edit'
-	   	end
+	    @institution.update_attributes(institution_param)
+		respond_with(@institution, :location => '/institutions/list')
 	end
 
 	def institution_param
@@ -62,9 +48,12 @@ class InstitutionsController < ApplicationController
 	   
 	def delete
 		@institution = Institution.find(params[:id])
-		@institution.destroy
-		#respond_with(nil, :location => institutions_path)
-   		redirect_to :action => 'list'
+		if @institution.destroy
+			flash[:success] = "Institution was deleted."
+	    else
+	      	flash[:error] = "Institution could not be deleted."
+	    end
+		redirect_to :action => 'list'
 	end
 
 	def show_kinds

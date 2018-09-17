@@ -10,6 +10,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'bootsnap'
 gem 'responders', '~> 2.3'
+gem 'pg', '~> 0.21.0'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
@@ -21,6 +22,7 @@ group :development do
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.0.2'
   gem 'spring-watcher-listen', '2.0.1'
+  gem 'faker'
 end
 
 group :test do
@@ -32,7 +34,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.18.4'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

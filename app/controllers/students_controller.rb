@@ -1,30 +1,26 @@
 class StudentsController < ApplicationController
 	layout 'standard'
-	
+
 	def list
 		@students = Student.all
+		respond_with(@students)
 	end
 	   
 	def show
 		@student = Student.find(params[:id])
+		respond_with(@student)
    	end
 	   
 	def new
 		@student = Student.new
 		@genders = Gender.all
 		@payment_methods = PaymentMethod.all
+		respond_with(@student)
 	end
 	   
 	def create
-	   @student = Student.new(student_params)
-		
-	   if @student.save
-	      redirect_to :action => 'list'
-	   else
-	      @genders = Gender.all
-		  @payment_methods = PaymentMethod.all
-	      render :action => 'new'
-	   end
+	    @student = Student.create(student_params)
+		respond_with(@student, :location => '/students/list')
 	   
 	end
 
@@ -36,18 +32,14 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		@genders = Gender.all
 		@payment_methods = PaymentMethod.all
+		respond_with(@student)
 	end
 	   
 	def update
 		@student = Student.find(params[:id])
 	
-	    if @student.update_attributes(student_param)
-	      	redirect_to :action => 'show', :id => @student
-	   	else
-			@genders = Gender.all
-			@payment_methods = PaymentMethod.all
-	      	render :action => 'edit'
-	   	end
+	    @student.update_attributes(student_param)
+	    respond_with(@student, :location => '/students/list')
 	end
 
 	def student_param
@@ -55,8 +47,13 @@ class StudentsController < ApplicationController
 	end
 	   
 	def delete
-		Student.find(params[:id]).destroy
-   		redirect_to :action => 'list'
+		@student = Student.find(params[:id])
+		if @student.destroy
+			flash[:success] = "Student was deleted."
+	    else
+	      	flash[:error] = "Student could not be deleted."
+	    end
+		redirect_to :action => 'list'
 	end
 
 	def show_genders

@@ -1,30 +1,26 @@
 class MatriculationsController < ApplicationController
 	layout 'standard'
-	
+
 	def list
 		@matriculations = Matriculation.all
+		respond_with(@matriculations)
 	end
 	   
 	def show
 		@matriculation = Matriculation.find(params[:id])
+		respond_with(@matriculation)
    	end
 	   
 	def new
 		@matriculation = Matriculation.new
 		@students = Student.all
 		@institutions = Institution.all
+		respond_with(@matriculation)
 	end
 	   
 	def create
-	   @matriculation = Matriculation.new(matriculation_params)
-		
-	   if @matriculation.save
-	      redirect_to :action => 'list'
-	   else
-	      @students = Student.all
-		  @institutions = Institution.all
-	      render :action => 'new'
-	   end
+	   @matriculation = Matriculation.create(matriculation_params)
+	   respond_with(@matriculation, :location => '/matriculations/list')
 	   
 	end
 
@@ -36,18 +32,14 @@ class MatriculationsController < ApplicationController
 		@matriculation = Matriculation.find(params[:id])
 		@students = Student.all
 		@institutions = Institution.all
+		respond_with(@matriculation)
 	end
 	   
 	def update
 		@matriculation = Matriculation.find(params[:id])
 	
-	    if @matriculation.update_attributes(matriculation_param)
-	      	redirect_to :action => 'show', :id => @matriculation
-	   	else
-			@students = Student.all
-			@institutions = Institution.all
-	      	render :action => 'edit'
-	   	end
+	    @matriculation.update_attributes(matriculation_param)
+		respond_with(@matriculation, :location => '/matriculations/list')
 	end
 
 	def matriculation_param
@@ -55,8 +47,13 @@ class MatriculationsController < ApplicationController
 	end
 	   
 	def delete
-		Matriculation.find(params[:id]).destroy
-   		redirect_to :action => 'list'
+		Matriculation.find(params[:id])
+   		if @matriculation.destroy
+			flash[:success] = "Matriculation was deleted."
+	    else
+	      	flash[:error] = "Matriculation could not be deleted."
+	    end
+		redirect_to :action => 'list'
 	end
 
 end

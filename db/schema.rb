@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_09_15_172928) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "genders", force: :cascade do |t|
     t.string "name", limit: 50
   end
